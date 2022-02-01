@@ -1,6 +1,10 @@
 from scripts.helpful_scripts import get_account
 from brownie import network, config, interface
 from scripts.get_weth import get_weth
+from web3 import Web3
+
+# 0.1
+amount = Web3.toWei(0.1, "ether")
 
 
 def main():
@@ -8,11 +12,9 @@ def main():
     erc20_address = config["networks"][network.show_active()]["weth_token"]
     if network.show_active() in ["mainnet-fork"]:
         get_weth()
-    # ABI
-    # Address
     lending_pool = get_lending_pool()
     # Approve sending out ERC20 tokens
-    approve_erc20()
+    approve_erc20(amount, lending_pool.address, erc20_address, account)
 
 
 def approve_erc20(amount, spender, erc20_address, account):
