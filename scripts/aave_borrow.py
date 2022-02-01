@@ -11,12 +11,20 @@ def main():
     # ABI
     # Address
     lending_pool = get_lending_pool()
+    # Approve sending out ERC20 tokens
+    approve_erc20()
+
+
+def approve_erc20(amount, spender, erc20_address, account):
+    print("Approving ERC20 token...")
 
 
 def get_lending_pool():
     lending_pool_addresses_provider = interface.ILendingPoolAddressesProvider(
         config["networks"][network.show_active()]["lending_pool_addresses_provider"]
     )
-    lending_pool_addresses = lending_pool_addresses_provider.getLendingPool()
+    lending_pool_address = lending_pool_addresses_provider.getLendingPool()
     # ABI
     # Address - Check!
+    lending_pool = interface.ILendingPool(lending_pool_address)
+    return lending_pool
