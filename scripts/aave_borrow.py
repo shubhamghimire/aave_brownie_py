@@ -17,6 +17,11 @@ def main():
 
 def approve_erc20(amount, spender, erc20_address, account):
     print("Approving ERC20 token...")
+    erc20 = interface.IERC20(erc20_address)
+    tx = erc20.approve(spender, amount, {"from": account})
+    tx.wait(1)
+    print("Approved!")
+    return tx
 
 
 def get_lending_pool():
