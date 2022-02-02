@@ -33,7 +33,11 @@ def main():
 def get_asset_price(price_feed_address):
     # ABI
     # Address
-    dai_eth_price_feed = interface.aggregatorV3Interface
+    dai_eth_price_feed = interface.AggregatorV3Interface(price_feed_address)
+    latest_price = dai_eth_price_feed.latestRoundData()[1]
+    converted_latest_price = Web3.fromWei(latest_price, "ether")
+    print(f"The DAI/ETH price is {converted_latest_price}")
+    return float(latest_price)
 
 
 def get_borrowable_data(lending_pool, account):
