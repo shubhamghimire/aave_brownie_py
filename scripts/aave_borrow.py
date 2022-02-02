@@ -21,8 +21,17 @@ def main():
     )
     tx.wait(1)
     print("Deposited!")
-
+    # ...how much?
     borrowable_eth, total_debt = get_borrowable_data(lending_pool, account)
+    print("Let's borrow!")
+    # DAI in terms of ETH
+    dai_eth_price = get_asset_price(
+        config["networks"][network.show_active()]["dai_eth_price_feed"]
+    )
+
+
+def get_asset_price(price_feed_address):
+    pass
 
 
 def get_borrowable_data(lending_pool, account):
