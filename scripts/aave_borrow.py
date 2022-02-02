@@ -31,7 +31,9 @@ def main():
 
 
 def get_asset_price(price_feed_address):
-    pass
+    # ABI
+    # Address
+    dai_eth_price_feed = interface.aggregatorV3Interface
 
 
 def get_borrowable_data(lending_pool, account):
