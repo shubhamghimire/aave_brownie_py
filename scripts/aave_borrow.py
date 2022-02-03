@@ -28,6 +28,7 @@ def main():
     dai_eth_price = get_asset_price(
         config["networks"][network.show_active()]["dai_eth_price_feed"]
     )
+    amount_dai_to_borrow = (1 / dai_eth_price) * (borrowable_eth * 0.95)
 
 
 def get_asset_price(price_feed_address):
